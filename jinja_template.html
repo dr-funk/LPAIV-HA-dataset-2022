@@ -1,0 +1,291 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="author" content="Mathis Funk">
+	<meta name="description" content="Supplementary figure 3 for Funk et al. 2022">
+	<style>
+		/* Set height of body and the document to 100% to fill the screen with the graphs */
+			body, html {
+		  height: 100%;
+			width:100%;
+		  margin: 0;
+		  font-family: Arial;
+		}
+			/* Style the analysis tabs */
+			.tab {
+			 overflow: hidden;
+			 border: none;
+			 background-color: #FFFFFF;
+			}
+			/* Style the buttons that are used to open the analysis tab content */
+			.tab button {
+			 background-color: #1965B0;
+			 color: white;
+			 float: left;
+			 border-style: outset;
+			 border-width: 1px;
+			 border-color: #364B9A;
+			 border-radius: 10px 10px 0px 0px;
+			 outline: none;
+			 cursor: pointer;
+			 padding: 5px 5px;
+			 transition: 0.3s;
+			}
+			/* Change background color of analysis tab buttons on hover */
+			.tab button:hover {
+			 background-color: #7BAFDE;
+			}
+			/* Create an active analysis tablink class */
+			.tab button.active {
+			 border-style: solid;
+			 border-width: 1px;
+			 border-color: #437DBF;
+			 background-color: #437DBF;
+			 padding: 5px 5px;
+			}
+			/* Style the splitting tabs */
+			.ntab {
+			 overflow: hidden;
+			 border: none;
+			 background-color: #437DBF;
+			}
+			/* Style the buttons that are used to open the split analyses tab content */
+			.ntab button {
+			 background-color: inherit;
+			 color: white;
+			 float: left;
+			 border-style: none solid none none;
+			 border-widht: 1px;
+			 border-color: #1967be;
+			 outline: none;
+			 cursor: pointer;
+			 padding: 5px 5px;
+			 transition: 0.3s;
+			}
+			/* Change background color of splitting buttons on hover */
+			.ntab button:hover {
+			 background-color: #7BAFDE;
+			}
+			/* Create an active splitting tablink class */
+			.ntab button.active {
+			 background-color: #FFFFFF;
+			 border-radius: 10px 10px 0px 0px;
+			 color: black;
+			 border-style: none solid none none;
+			 border-widht: 1px;
+			 border-color: #364B9A;
+			}
+			/* Style the A threshold tabs */
+			.nntab {
+			 overflow: hidden;
+			 border: none;
+			 background-color: #FFFFFF;
+			}
+			/* Style the buttons that are used to open the A threshold graphs */
+			.nntab button {
+			 background-color: inherit;
+			 color: black;
+			 border: none;
+			 outline: none;
+			 cursor: pointer;
+			 padding: 5px 5px;
+			 transition: 0.3s;
+			}
+			/* Change background color of A threshold buttons on hover */
+			.nntab button:hover {
+			 color: white;
+			 background-color: #7BAFDE;
+			}
+			/* Create an active A threshold tablink class */
+			.nntab button.active {
+			 color: white;
+			 background-color: #437DBF;
+			}
+			/* Style the tab content */
+			.tabcontent {
+				color: black;
+			  visibility: hidden;
+			  height: 90%;
+				width: 100%;
+			}
+			/* style the homepage text */
+			.hometext {
+				color: black;
+				margin: auto;
+				max-width: 60%;
+			}
+
+</style>
+</head>
+<body>
+<!-- Tab links -->
+<div class="tab">
+	<button class="tablinks" onclick='openTab(event, "home")' id=defaultOpen>Home</button>
+	{% for var1_name in var1_names %}
+  <button class="tablinks" onclick="openTab(event, '{{var1_name}}')">{{fig_nb[var1_name]}}: {{var1_name}}</button>
+  {% endfor %}
+</div>
+{% for var1_name in var1_names %}
+<div class='ntab' id='{{var1_name}}'>
+	{% for var2_name in var2_names %}
+	<button class='ntablinks' onclick='opennTab(event,"{{var1_name}}{{var2_name}}")'>{{var2_longform[var2_name]}}</button>
+	{% endfor %}
+</div>
+{% endfor %}
+
+
+<!-- Tab content -->
+<!-- Content of the home tab is hard-coded in here -->
+<div id='home' class='tabcontent'>
+	<div class='hometext'>
+	<h2>Supplementary Figure S3 for Funk et al. 2022</h2><br>
+		Use the tabs above to navigate between the different analyses.<br><br>
+		Each analysis can be split by region, species or both by using the second row of tabs. For Figure S3f, the required A-threshold can be varied using the buttons in the top left corner. When split, the data is normalized by subtype as well as region, species or region and species, i.e., so that the sum of each stack of bars adds up to 100%<br><br>
+		Hover over a bar for more detailed information, such as the number of sequences it represents. Bar labels are displayed for bars representing fewer than 10 sequences, but over 50% of the data to highlight groups for which only a low number of sequences were available.<br><br>
+		All figures use the same color scheme: red for sequences isolated in the Americas, blue for sequences isolated in the Africa-Eurasia-Oceania (AEO) region using light colors for sequences isolated from terrestrial poultry and dark colors for sequences isolated from wild aquatic birds.<br><br>
+		If the graphs do not fill the window, try resizing it.<br><br>
+		<b>Figure S3a: Number of adenines in the P4 to P1 HA cleavage site region for each subtype.</b><br>
+		The number of adenines in the 4 codons preceding the HA cleavage site was counted in each sequence.<br><br>
+		<b>Figure S3b: Length of the longest adenine stretch in the P4 to P1 HA cleavage site region for each subtype.</b><br>
+		The longest stretch of adenines in the 4 codons preceding the HA cleavage site was identified in each sequence.<br><br>
+		<b>Figure S3c: Number of purines in the P4 to P1 HA cleavage site region for each subtype.</b><br>
+		The number of purines (adenine or guanine) in the 4 codons preceding the HA cleavage site was counted in each sequence.<br><br>
+		<b>Figure S3d: Length of the longest purine stretch in the P4 to P1 HA cleavage site region for each subtype.</b><br>
+		The longest stretch of purines (adenine or guanine) in the 4 codons preceding the HA cleavage site was identified in each sequence.<br><br>
+		<b>Figure S3d: Number of substitutions required in sequences from each subtype to obtain a tribasic cleavage site via substitutions.</b><br>
+		For each sequence, the number of substitutions required to obtain an arginine in P1 and two other basic amino acids (lysine and arginine only) in P4 to P2 was determined. Only AGG and AGA codons were allowed for arginine, as only those are observed in HPAIVs in nature.<br><br>
+		<b>Figure S3f: Number of substitutions required to increase adenine stretch length in the P4 to P1 region using only codons found in the dataset at each given position in each subtype.</b><br>
+		For each sequence, the number of substitutions required to obtain an adenine stretch of at least a given threshold is shown. An empty graph denotes the impossibility to obtain an adenine stretch of the indicated length using only codons observed in nature.
+
+	</div>
+</div>
+<!-- Now to add the graphs by looping throuhg all analyses -->
+<!-- The A threshold analysis needs to be handled apart since it has an extra-layer of nested-nested-tabs that other analyses do not have -->
+{% for var1_name in var1_names %}
+{% if var1_name == 'substitutions to adenine stretch' %}
+	{% for var2_name in var2_names %}
+	<div id = '{{var1_name}}{{var2_name}}' class='nntab'>
+		<button class='nntablinks'>adenine threshold length:</button>
+		{% for t in range(3, 11) %}
+			<button class='nntablinks' onclick='opennnTab(event, "{{var1_name}}{{var2_name}}{{t}}")'>{{t}}</button>
+		{% endfor %}
+	</div>
+		{% for graph in graphs[var1_name][var2_name] %}
+		<div id="{{var1_name}}{{var2_name}}{{graph.0}}" class="tabcontent">
+			{{graph.1}}
+		</div>
+		{% endfor %}
+	{% endfor %}
+{% else %}
+  {% for graph in graphs[var1_name] %}
+  <div id="{{var1_name}}{{graph.0}}" class="tabcontent">
+  {{graph.1}}
+  </div>
+  {% endfor %}
+{% endif %}
+{% endfor %}
+</body>
+
+<script>
+// These are the scripts handling hiding and showing content. Could this all be handled by a single script with a single tab style? Probably but this is my first time doing this :)
+
+function openTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, tablinks, ntab, ntablinks, nntab, nntablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+    // Get all elements with class="ntab" and hide them
+  ntab = document.getElementsByClassName("ntab");
+  for (i = 0; i < ntab.length; i++) {
+    ntab[i].style.display = "none";
+  }
+	// Get all elements with class="nntab" and hide them
+	nntab = document.getElementsByClassName("nntab");
+	for (i = 0; i < nntab.length; i++) {
+		nntab[i].style.display = "none";
+	}
+
+    // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+	// Get all elements with class="ntablinks" and remove the class "active"
+  ntablinks = document.getElementsByClassName("ntablinks");
+  for (i = 0; i < ntablinks.length; i++) {
+    ntablinks[i].className = ntablinks[i].className.replace(" active", "");
+  }
+	// Get all elements with class="nntablinks" and remove the class "active"
+  nntablinks = document.getElementsByClassName("nntablinks");
+  for (i = 0; i < nntablinks.length; i++) {
+    nntablinks[i].className = nntablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+	document.getElementById(tabName).style.visibility = "visible";
+  evt.currentTarget.className += " active";
+
+}
+
+function opennTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, ntablinks, nntablinks, nntab;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+	// Get all elements with class="nntab" and hide them
+	nntab = document.getElementsByClassName("nntab");
+	for (i = 0; i < nntab.length; i++) {
+	nntab[i].style.display = "none";
+	}
+
+  // Get all elements with class="ntablinks" and remove the class "active"
+  ntablinks = document.getElementsByClassName("ntablinks");
+  for (i = 0; i < ntablinks.length; i++) {
+    ntablinks[i].className = ntablinks[i].className.replace(" active", "");
+  }
+	// Get all elements with class="nntablinks" and remove the class "active"
+	nntablinks = document.getElementsByClassName("nntablinks");
+	for (i = 0; i < nntablinks.length; i++) {
+		nntablinks[i].className = nntablinks[i].className.replace(" active", "");
+	}
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+	document.getElementById(tabName).style.visibility = "visible";
+  evt.currentTarget.className += " active";
+	}
+
+function opennnTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, nntablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="nntablinks" and remove the class "active"
+  nntablinks = document.getElementsByClassName("nntablinks");
+  for (i = 0; i < nntablinks.length; i++) {
+    nntablinks[i].className = nntablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+	document.getElementById(tabName).style.visibility = "visible";
+  evt.currentTarget.className += " active";
+}
+</script>
+<script>
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+</script>
