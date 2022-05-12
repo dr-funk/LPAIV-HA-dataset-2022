@@ -18,7 +18,8 @@ from jinja2 import Environment, FileSystemLoader
 if len(sys.argv)>1:
     data_path = sys.argv[1]
 else:
-    data_path='/Users/threecats/Data/papers/2021-HA_dataset/data' 
+    data_path='' # input path here to hardcode it
+
 # set up the jinja environment
 env = Environment(loader=FileSystemLoader(data_path))
 template = env.get_template('jinja_template.html') # name of the jinja template file, needs to be in the data folder or a path specified in the line above instead of data_path
@@ -51,9 +52,9 @@ var2_longform={'all sequences':'all sequences',
 
 # establishing the values taken by the second variable
 var2_lists = {'region-species':data_files, 
-    'region':['america','eurasia'],
-    'species':['poultry','ans_cha'],
-    'all sequences':['all']}
+              'region':['america','eurasia'],
+              'species':['poultry','ans_cha'],
+              'all sequences':['all']}
 
 # attributing names and numbers to the figures. these will be used to annotate the tabs
 fig_nb = {'number of adenines':'Figure S3a',
