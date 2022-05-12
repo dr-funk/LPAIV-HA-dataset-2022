@@ -11,6 +11,6 @@ The script requires [Biopython](https://anaconda.org/conda-forge/biopython), [pa
 
 The folder containing the sorted data needs to be provided, there are two ways to do this, either on the command line using
 `all_analyses_interactive.py <path to data folder>`
-or by inputting the path to the data folder on line 21 in which case no command line arguments are required.
+or by writing the path to the data folder on line 21 in which case no command line arguments are required.
 
 The jinja template needs to be placed into the data folder or its enclosing folder needs to be specified on line 24.
