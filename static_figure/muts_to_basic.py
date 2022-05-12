@@ -26,9 +26,8 @@ if var2_name not in ('region', 'species', 'region-species','none'):
 # setting up parameters
 results = {}
 maxresult = 0
-tribasic = True
 consecutive = False
-tetrabasic = False
+tribasic = True
 target = [['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AGA','AGG']] # list of lists of codons acceptable at each position
 
 # setting up the title of the figure
