@@ -3,7 +3,7 @@ Scripts to analyse the dataset from Funk et al. 2022
 
 These scripts are meant to be used with a sorted dataset like the one provided alongside the article. Data has to be sorted by subtype as well as splitting variable(s) (region and species in this case).
 
-For all scripts thefolder containing the data, ie the subfolders split by region and species, has to be provided. The scripts require the data to be organized in the same way as the dataset from the article, i.e.,
+For all scripts the folder containing the data, i.e., the subfolders split by region and species, has to be provided. The scripts require the data to be organized in the same way as the dataset from the article, i.e.,
 ```
 <data folder>
    └── by_region-species
