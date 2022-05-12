@@ -23,11 +23,15 @@ else:
 if var2_name not in ('region', 'species', 'region-species','none'):
     sys.exit('second variable has to be one of: region, species, region-species, none')
 
+# setting up parameters
 results = {}
 maxresult = 0
 tribasic = True
 consecutive = False
 tetrabasic = False
+target = [['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AGA','AGG']] # list of lists of codons acceptable at each position
+
+# setting up the title of the figure
 var1_name = f'substitutions to {"tri" if tribasic == True else "tetra"}basic {"non-" if consecutive == False else ""}consecutive site'
 
 data_files = ['america-poultry','eurasia-poultry','america-ans_cha','eurasia-ans_cha'] # these are the names of the subfolders in data/ and of the start of the sequence files they contain
@@ -107,22 +111,19 @@ def get_barlabels(plotdf_norm, t):
             label_text = [count[0] if count != [0] else '' for count in counts]
             labels.append(label_text)
     else:
-        # collapsing the counts by var2 to sum up both species in region mode for example
+        # collapsing the counts 
         collapsed_df = plotdf_norm[plotdf_norm['subtype']==f'H{t}'].groupby([var1_name], as_index=False)['count'].sum()
         # pulling raw counts from the collapsed dataframe
         counts = collapsed_df['count'].values.tolist()
-        print(counts)
         # cleaning up the labels by ignoring zeros and pulling the values out of the individual lists
         label_text = [count if count != 0 else '' for count in counts]
         labels = label_text
     return labels
 
+## running the analysis
 ## intializing variables
-results = {}
-maxresult = 0
 var2_list = var2_lists[var2_name]
-target = [['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AAA','AAG','AGA','AGG'],['AGA','AGG']] # list of lists of codons acceptable at each position
-print(f'running {var1_name} on {var2_name}')
+print(f'running {var1_name} on {var2_name if var2_name != "none" else "all sequences"}')
 
 for var2 in data_files:
     for t in range(1, 17):
@@ -169,33 +170,33 @@ plotdf_norm = normalize_df(resultdf, var2_name)
 
 ## plotting
 ## initializing the figure
-sns.color_palette("Set2",len(var2_list))
 plt.rcParams.update({'font.size': 16})
 sns.set_style("whitegrid")
 fig = plt.figure(figsize =(15,15))
-for t in range(1, 17):
-    ## get bar labels
-    label_text = get_barlabels(plotdf_norm, t)
-    ax = plt.subplot2grid((4,4), (math.floor((t-1)/4),(t-1) % 4))
+for t in range(1, 17): # iterating through subtypes
+    label_text = get_barlabels(plotdf_norm, t) # getting bar labels
+    ax = plt.subplot2grid((4,4), (math.floor((t-1)/4),(t-1) % 4)) # this positions the figure correctly in the 4x4 grid
+    # next line squashes the data together, e.g., combine america-poultry and america-ans_cha if plotting by region or combining all subsets if plotting without splitting
     sns.barplot(data=plotdf_norm[plotdf_norm['subtype']==f'H{t}'].groupby([var1_name, var2_name], as_index=False)['percentage'].sum() if var2_name != 'none' else plotdf_norm[plotdf_norm['subtype']==f'H{t}'].groupby([var1_name], as_index=False)['percentage'].sum(), 
                 ax=ax, 
                 x=var1_name, 
                 y='percentage',
                 hue=var2_name if var2_name != 'none' else None, 
                 hue_order=[abr_dict[var2] for var2 in var2_list] if var2_name != 'none' else None, # making sure the bars are plotted in the right order to make sure they get the right color
-                palette=palette_dict[var2_name])
+                palette=palette_dict[var2_name]) # grabbing the right color palette
+    # bar labels
     bar = 0
     for c in ax.containers:
-        ax.bar_label(c, labels=label_text[bar] if var2_name != 'none' else label_text, fontsize=12)
+        ax.bar_label(c, labels=label_text[bar] if var2_name != 'none' else label_text, fontsize=12) # label_text is a list of lists if the data is split, but only a normal list if data isn't split
         bar += 1  
     ax.set(ylim = (0,100))
     ax.grid(False)
     ax.set(xlabel=None)
     ax.set(ylabel=None)
-    if var2_name != 'none':
+    if var2_name != 'none': # no legend gets plotted if there is a single dataseries, avoiding an error by not trying to remove a legend that doesn't exist
         ax.get_legend().remove()
     sns.despine()
-fig.suptitle(f'{var1_name}, {var2_longform[var2_name]}')
+fig.suptitle(f'{var1_name}, {var2_longform[var2_name]}') # setting a big ol' title
 fig.tight_layout()
 fig.savefig(f"{data_path}/muts_to_{'tri' if tribasic == True else 'tetra'}basic_by{var2_name}_{'non-cons' if consecutive == False else 'cons'}.pdf")
 
