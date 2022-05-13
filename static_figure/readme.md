@@ -2,6 +2,8 @@
 
 Both scripts provided here can be used to generate static pdf graphs similar to those in the article. The scripts requires [Biopython](https://anaconda.org/conda-forge/biopython), [pandas](https://anaconda.org/conda-forge/pandas), [Matplotlib](https://anaconda.org/conda-forge/matplotlib) and [Seaborn](https://anaconda.org/anaconda/seaborn).
 
+The version of the scripts available here is set up to investigate differences between poultry/wild birds. The graphs in the main text of the articles have been generated with a simplified data handling and plotting procedure since there was no need to track the region and species of each sequence. The actual analysis and the plotting are identical in both versions.
+
 ## muts_to_basic.py
 
 This script finds the minimum number of substitutions required to reach a (non-)consecutive tri- or tetrabasic site for each sequence of a dataset. There are several parameters that can be changed:
