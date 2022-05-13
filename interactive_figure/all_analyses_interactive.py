@@ -45,7 +45,7 @@ abr_dict={'ans_cha':'aquatic wild birds',
         'eurasia-poultry':'terrestrial poultry from the AEO',
         'eurasia-ans_cha':'aquatic wild birds from the AEO'}
 # second the names of the second variable
-var2_longform={'all sequences':'all sequences',
+var2_longform={'all sequences':'all poultry/wild bird sequences',
                 'region':'split by region of isolation',
                 'species':'split by species of isolation',
                 'region-species':'split by region and species of isolation'}
@@ -193,7 +193,7 @@ def make_graph(plotdf_norm, var1_name, var2_name, abr_dict):
                     hoverlabel={'bgcolor':'white',
                                 'font_size':16},
                                 autosize=True,
-                    title={'text': f"{var1_name} in LPAIV sequences {f'{var2_longform[var2_name]}' if var2_name !='all sequences' else ''}" ,
+                    title={'text': f"{var1_name} in terrestrial poultry and wild aquatic bird LPAIV sequences {f'{var2_longform[var2_name]}' if var2_name !='all sequences' else ''}" ,
                             'y':0.99,
                             'x':0.5,
                             'xanchor': 'center',
